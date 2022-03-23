@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><beast beautitemplate='Standard' beautistatus='' namespace="beast.core:beast.evolution.alignment:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.evolution.likelihood" required="" version="2.6">
+
+
+    <data
+id="indelible-1"
+spec="Alignment"
+name="alignment">
+      
+      <!-- <sequence id="seq_bonobo" spec="Sequence" taxon="3" totalcount="4" value="GCGTAAGGGAATTTTATTATAAAGCACAGCTCACATAGATACGGCGATACCTCAGGTAACACTGTTATTTGCTAGGGAGGATGGTCTTCTGGTACACTGTCTAGTAGACATGCCTTCGGTAAATTCTTTTTACTCAGCGTGTCAGACTCGGTATCCCCTAGTTGCAACATGACGACGATCGCGTGTTAGCGCGTGAGGCAGGGATACCGACGACTTTGTGAGGACATTGCAAAGAATTCAATGCCTGCCCCGTCATCGTCACTTTGACCCAACTTATCGTCAGGGCCTTTGGAGGGTGGGAACACAATGCTAGCTAAGGAAAGGGTTAATGCTACCACATTTACTCGGGGTACCTTTTCAGGGACTTAGATTCTTAGCAGATGGTCGTTTCCCCGGGACAGCCATTCAAGAATCCAGAGCCGAGACATGTGGGCCAAAGGGCTGCGAATGGGGCCAAGAGGGTGCGAGTGGATTGGCCTCACGGCTTGATGGCGAGTCTA"/> -->
+      <!-- <sequence id="seq_chimp" spec="Sequence" taxon="1" totalcount="4" value="GCGTAAGGGAATTTTATTATAAAGCGCAGCTCACATAGGTACGGCGACACCTCAGGTAACACTGTTATTTGCTAGGGAGGATGATCTTCTGGTACACTGTCTAGTAGACATGCCTCCGGTAAATTCTTTTTACTCAGCGTGTGAGACTCGGTCTCCCCTAGTTGCAACATGACGACGATCGCGTGTTAGCGCGTGAGGCAGGGATACCGACGACTTTGTGAGGACATTGCAAAAAATTCAATGCCTGCCCCGTCATCGTCACTTTGACCCAACTTATCGTCAGGGCCTTTGGAGGGTGGGAACACAATGCTAGCTAAGGAAAGGGTCAATGCTACCACATTTACTCGGGGTACCTTTACAGGGACTTAGATTCTTAGCAGATGGTCGTTTCCCCCGGACTGCCATTCAAGAATCCAGAGCCGAGACATGTGGGCCAAAGGGCTGCGAATGGGGCCAAGAGGGTGTGAGTGGATTGGCCTCACGGCTTGATGGCGAGTCTA"/> -->
+      <!-- <sequence id="seq_orangutan" spec="Sequence" taxon="2" totalcount="4" value="GCGTAAGCGAATTTTATTATAATGCATAGCTCACACGCATACGGCGGCACCTCAGATATCACTGTTAGTTGCTAGGGAGGATGATCATCCGGTACACTGTCTAGTAGACATGCCTTCAGTAAATTCTTTTTAATCAGCGTGTCAGACTCATTCTTCCCTGGTTGCAACATGACGACGATCGCGTGTTAGCGCGTGCGGCAGGGATACCGACGACTTTGTGAGGACATTGCAAGGAATTCAATGCCTGCCCCGTCATCGTCACTTTGACCTAATTTATCCTCAGGGCGCTTGTAGGATGGGATCACAATGCTAGCTAAGGATAGGGTCAATGCTACCAAATTTACTCGGGGCACCTTTACAGGGAACTAGATTCGTTGCAGATGGTCGATTCCCCGGGACTGCCATCCAAGAATCCAGAGCCGAGACATGTGGGCCAAATGGCTGCGAATGGGGCCACTAGGGTGCGAGTGGATTGGCCTCACGGCTTGATGACGAGGCTA"/> -->
+      <!-- <sequence id="seq_siamang" spec="Sequence" taxon="4" totalcount="4" value="GCGTAAGGGAATTTTATTACAAAGCACAGCTCACATATATATGGCGGCATCTCAGTTATAACTGTTACTTGCAAGGGAGGATGATCATCTGGTATACTGTCTAGTAGACATGCCTTCAGTTAATTCTTCTTACTCCGGGTGTCAAACTCATCGTTCCCTGGTTGCAACATGACGACGATCGCGTGTTAGCGCGTGCGGCACGGATACCGTCGACTTGGTGAGGAGAGTGCAAGGAATTTAATGCGTGCCCCGTCATCGTCACTTTGACCTAATTTATCCTCAGAGCACTTGGCGGATGGGCACACAACGCTAGCCAAGGATAGGGTCAATGCTACCACATTTACTCGGGGTAACTCGATAGGGAACTGGATTCTTACCAGGCGGTAGTGTCCCCAGGACTACCATCCAAGAATCCAGAGCCGAGACATGTGGGCCAAATGGCTGCGAATGGGGCCACGAGAGTGCGAATGGATTGGCCTCACGGCTTGATGGCGAGTCTA"/> -->
+    </data>
+    
+    <map name="Uniform" >beast.math.distributions.Uniform</map>
+<map name="Exponential" >beast.math.distributions.Exponential</map>
+<map name="LogNormal" >beast.math.distributions.LogNormalDistributionModel</map>
+<map name="Normal" >beast.math.distributions.Normal</map>
+<map name="Beta" >beast.math.distributions.Beta</map>
+<map name="Gamma" >beast.math.distributions.Gamma</map>
+<map name="LaplaceDistribution" >beast.math.distributions.LaplaceDistribution</map>
+<map name="prior" >beast.math.distributions.Prior</map>
+<map name="InverseGamma" >beast.math.distributions.InverseGamma</map>
+<map name="OneOnX" >beast.math.distributions.OneOnX</map>
+
+
+<run id="mcmc" spec="MCMC" chainLength="10000000">
+    <state id="state" spec="State" storeEvery="5000">
+        <tree id="Tree.t:indelible-1" spec="beast.evolution.tree.Tree" name="stateNode">
+            <taxonset id="TaxonSet.indelible-1" spec="TaxonSet">
+                <alignment idref="indelible-1"/>
+            </taxonset>
+        </tree>
+        <parameter id="birthRate.t:indelible-1" spec="parameter.RealParameter" name="stateNode">1.0</parameter>
+    </state>
+    
+    
+    <!-- <init spec='beast.util.TreeParser' id='NewickTree.t:indelible-1' initial="@Tree.t:indelible-1" IsLabelledNewick="true" taxa='@indelible-1'> <input name="newick"> (((((chimp:0.009603178109055574,bonobo:0.009603178109055574):0.01049225186311567):0.013418689384830318):0.02460624740645495,orangutan:0.05812036676345651):0.010656607109573349,siamang:0.06877697387302986); </input> /init> -->
+    <!-- <init IsLabelledNewick="true" initial="@Tree.t:indelible-1" id="NewickTree.t:indelible-1" spec="beast.util.TreeParser"> <input name="newick">  (((((1:0.5,2:0.5):0.1):0.1):0.1,3:0.1):0.9,4:0.9); </input> </init> -->
+    <!-- <init islabellednewick="true" initial="@Tree.t:mtDNA_tree" id="StartingTree.t:mtDNA_tree" spec="beast.util.TreeParser"> <input name="newick"> (Bovine:0.69395,(Hylobates:0.36079,(Pongo:0.33636,(G._Gorilla:0.17147, (P._paniscus:0.19268,H._sapiens:0.11927):0.08386):0.06124):0.15057):0.54939, Rodent:1.21460); </input> </init>  -->
+
+    <init id="StartingTree.t:indelible-1" spec="beast.util.TreeParser" estimate="false" initial="@Tree.t:indelible-1" taxa="@indelible-1"> <input name="newick"> ((1:1, 2:1):1, (3:1, 4:1):1):0.0; </input> </init>
+
+    <!-- <populationModel id="ConstantPopulation0.t:indelible-1" spec="ConstantPopulation"> -->
+    <!--   <parameter id="randomPopSize.t:indelible-1" spec="parameter.RealParameter" name="popSize">1.0</parameter> -->
+    <!-- </populationModel> -->
+    <!-- </init> -->
+    
+    
+    <distribution id="posterior" spec="util.CompoundDistribution">
+        <distribution id="prior" spec="util.CompoundDistribution">
+            <distribution id="YuleModel.t:indelible-1" spec="beast.evolution.speciation.YuleModel" birthDiffRate="@birthRate.t:indelible-1" tree="@Tree.t:indelible-1"/>
+            <prior id="YuleBirthRatePrior.t:indelible-1" name="distribution" x="@birthRate.t:indelible-1">
+                <Uniform id="Uniform.1" name="distr" upper="Infinity"/>
+            </prior>
+        </distribution>
+        <distribution id="likelihood" spec="util.CompoundDistribution" useThreads="true">
+            <distribution id="treeLikelihood.indelible-1" spec="ThreadedTreeLikelihood" data="@indelible-1" tree="@Tree.t:indelible-1">
+                <siteModel id="SiteModel.s:indelible-1" spec="SiteModel">
+                    <parameter id="mutationRate.s:indelible-1" spec="parameter.RealParameter" estimate="false" name="mutationRate">1.0</parameter>
+                    <parameter id="gammaShape.s:indelible-1" spec="parameter.RealParameter" estimate="false" name="shape">1.0</parameter>
+                    <parameter id="proportionInvariant.s:indelible-1" spec="parameter.RealParameter" estimate="false" lower="0.0" name="proportionInvariant" upper="1.0">0.0</parameter>
+                    <substModel id="JC69.s:indelible-1" spec="JukesCantor"/>
+                </siteModel>
+                <branchRateModel id="StrictClock.c:indelible-1" spec="beast.evolution.branchratemodel.StrictClockModel">
+                    <parameter id="clockRate.c:indelible-1" spec="parameter.RealParameter" estimate="false" name="clock.rate">1.0</parameter>
+                </branchRateModel>
+            </distribution>
+        </distribution>
+    </distribution>
+
+    <operator id="YuleBirthRateScaler.t:indelible-1" spec="ScaleOperator" parameter="@birthRate.t:indelible-1" weight="1.0"/>
+
+    <operator id="YuleModelTreeScaler.t:indelible-1" spec="ScaleOperator" scaleFactor="0.5" tree="@Tree.t:indelible-1" weight="0.0"/>
+
+    <operator id="YuleModelTreeRootScaler.t:indelible-1" spec="ScaleOperator" rootOnly="true" scaleFactor="0.5" tree="@Tree.t:indelible-1" weight="0"/>
+
+    <operator id="YuleModelUniformOperator.t:indelible-1" spec="Uniform" tree="@Tree.t:indelible-1" weight="0.0"/>
+
+    <operator id="YuleModelSubtreeSlide.t:indelible-1" spec="SubtreeSlide" tree="@Tree.t:indelible-1" weight="0.0"/>
+
+    <operator id="YuleModelNarrow.t:indelible-1" spec="Exchange" tree="@Tree.t:indelible-1" weight="0.0"/>
+
+    <operator id="YuleModelWide.t:indelible-1" spec="Exchange" isNarrow="false" tree="@Tree.t:indelible-1" weight="0.0"/>
+
+    <operator id="YuleModelWilsonBalding.t:indelible-1" spec="WilsonBalding" tree="@Tree.t:indelible-1" weight="0.0"/>
+
+    <logger id="tracelog" spec="Logger" fileName="indelible-1.log" logEvery="1000" model="@posterior" sanitiseHeaders="true" sort="smart">
+        <log idref="posterior"/>
+        <log idref="likelihood"/>
+        <log idref="prior"/>
+        <log idref="treeLikelihood.indelible-1"/>
+        <log id="TreeHeight.t:indelible-1" spec="beast.evolution.tree.TreeHeightLogger" tree="@Tree.t:indelible-1"/>
+        <log idref="YuleModel.t:indelible-1"/>
+        <log idref="birthRate.t:indelible-1"/>
+    </logger>
+
+    <logger id="screenlog" spec="Logger" logEvery="1000">
+        <log idref="posterior"/>
+        <log idref="likelihood"/>
+        <log idref="prior"/>
+    </logger>
+
+    <logger id="treelog.t:indelible-1" spec="Logger" fileName="$(tree).trees" logEvery="1000" mode="tree">
+        <log id="TreeWithMetaDataLogger.t:indelible-1" spec="beast.evolution.tree.TreeWithMetaDataLogger" tree="@Tree.t:indelible-1"/>
+    </logger>
+
+    <operatorschedule id="OperatorSchedule" spec="OperatorSchedule"/>
+
+</run>
+
+</beast>

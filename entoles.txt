@@ -1,0 +1,3 @@
+perl ./beastXMLModifier.pl -in indelible-1.out.xml -fasta athina_data.fasta -newick athina_data.newick
+
+perl ./beastXMLModifier.pl -in indelible-1.out.xml -fasta athina_data.fasta -newick athina_data.newick > kainhourgio.xml
